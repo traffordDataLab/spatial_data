@@ -1,5 +1,5 @@
 
-### Rivers
+### Watercourses
 
 This folder contains rivers and other waterways constrained by the boundaries of Trafford borough and the Greater Manchester Combined Authority. 
 
