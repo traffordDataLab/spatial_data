@@ -7,4 +7,5 @@ The geospatial data derive [OS Open Greenspace](https://www.ordnancesurvey.co.uk
 
 Contains Ordnance Survey data © Crown copyright and database right 2018
 
-<script src="https://embed.github.com/view/geojson/trafforddatalab/spatial_data/master/greenspaces/trafford_greenspace_sites_styled.geojson"></script>
+
+<iframe width="854" height="480" src="https://embed.github.com/view/geojson/trafforddatalab/spatial_data/master/greenspaces/trafford_greenspace_sites_styled.geojson" frameborder="0" allowfullscreen></iframe>
