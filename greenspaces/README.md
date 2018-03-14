@@ -1,7 +1,7 @@
 
 <strong>[Preview map](https://github.com/traffordDataLab/spatial_data/blob/master/greenspaces/trafford_greenspace_sites_styled.geojson)</strong>
 
-<iframe width="560" height="315" src="https://embed.github.com/view/geojson/trafforddatalab/spatial_data/master/greenspaces/trafford_greenspace_sites_styled.geojson.geojson" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://embed.github.com/view/geojson/trafforddatalab/spatial_data/master/greenspaces/trafford_greenspace_sites_styled.geojson" frameborder="0" allowfullscreen></iframe>
 
 </br>
 
