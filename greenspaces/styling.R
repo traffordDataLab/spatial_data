@@ -1,7 +1,7 @@
 ## Styling features ##
 
 # load packages ---------------------------
-library(sf) ; library(geojsonio) ; library(RColorBrewer) ; library(leaflet)
+library(tidyverse); library(sf) ; library(geojsonio) ; library(RColorBrewer) ; library(leaflet)
 
 # read data ---------------------------
 geojson <- st_read("https://github.com/traffordDataLab/spatial_data/raw/master/greenspaces/trafford_greenspace_sites.geojson")
@@ -12,7 +12,10 @@ geojson_styles <- geojson_style(geojson, var = 'site_type',
                            stroke_width = 3,
                            stroke_opacity = 1,
                            fill = brewer.pal(length(unique(geojson$site_type)), "Set2"),
-                           fill_opacity = 0.8)
+                           fill_opacity = 0.8) %>% 
+  rename(`stroke-width` = stroke.width,
+         `stroke-opacity` = stroke.opacity,
+         `fill-opacity` = fill.opacity)
 
 # check results ---------------------------
 leaflet() %>% 
@@ -20,10 +23,10 @@ leaflet() %>%
   setView(-2.35533522781156, 53.419025498197, zoom = 12) %>% 
   addPolygons(data = geojson_styles, 
               color = ~stroke, 
-              weight = ~stroke.width, 
-              opacity = ~stroke.opacity,
+              weight = ~`stroke-width`, 
+              opacity = ~`stroke-opacity`,
               fillColor = ~fill,
-              fillOpacity = ~fill.opacity,
+              fillOpacity = ~`fill-opacity`,
               label = ~site_type)
 
 # write data ---------------------------
