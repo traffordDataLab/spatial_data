@@ -31,4 +31,3 @@ leaflet() %>%
 
 # write data ---------------------------
 st_write(geojson_styles, "trafford_greenspace_sites_styled.geojson")
-
