@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Sale", "lat": 53.4243665, "lon": -2.3182869, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/206229", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.3182869, 53.4243665 ] } },
+{ "type": "Feature", "properties": { "name": "Stretford", "lat": 53.4452286, "lon": -2.3222351, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/223548", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.3222351, 53.4452286 ] } },
+{ "type": "Feature", "properties": { "name": "Urmston", "lat": 53.4452286, "lon": -2.3524475, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/240081", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.3524475, 53.4452286 ] } },
+{ "type": "Feature", "properties": { "name": "Altrincham", "lat": 53.3838403, "lon": -2.3527908, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/6518", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.3527908, 53.3838403 ] } },
+{ "type": "Feature", "properties": { "name": "Partington", "lat": 53.4212977, "lon": -2.4281502, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/183640", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.4281502, 53.4212977 ] } },
+{ "type": "Feature", "properties": { "name": "Carrington", "lat": 53.433553, "lon": -2.384744, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/44886", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.384744, 53.433553 ] } },
+{ "type": "Feature", "properties": { "name": "Old Trafford", "lat": 53.461922, "lon": -2.270467, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/179060", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.270467, 53.461922 ] } },
+{ "type": "Feature", "properties": { "name": "Timperley", "lat": 53.3961251, "lon": -2.320175, "URI": "http:\/\/data.ordnancesurvey.co.uk\/doc\/50kGazetteer\/230451", "marker-color": "#fc6721", "marker-symbol": "city", "marker-size": "medium" }, "geometry": { "type": "Point", "coordinates": [ -2.320175, 53.3961251 ] } }
+]
+}
