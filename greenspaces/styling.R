@@ -1,10 +1,11 @@
+
 ## Styling features ##
 
 # load packages ---------------------------
 library(tidyverse); library(sf) ; library(geojsonio) ; library(RColorBrewer) ; library(leaflet)
 
 # read data ---------------------------
-geojson <- st_read("https://github.com/traffordDataLab/spatial_data/raw/master/greenspaces/trafford_greenspace_sites.geojson")
+geojson <- st_read("http://trafforddatalab.io/spatial_data/greenspaces/trafford_greenspace_sites.geojson")
 
 # apply styles ---------------------------
 geojson_styles <- geojson_style(geojson, var = 'site_type',
