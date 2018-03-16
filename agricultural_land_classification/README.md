@@ -1,4 +1,4 @@
-<strong>[Preview map](https://www.trafforddatalab.io/spatial_data/agricultural_land_classification/trafford_agricultural_land_classification_styled.geojson)</strong>
+<strong>[Preview map](trafford_agricultural_land_classification_styled.geojson)</strong>
 
 </br>
 
