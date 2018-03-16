@@ -1,4 +1,4 @@
-<strong>[Preview map](trafford_agricultural_land_classification_styled.geojson)</strong>
+[<img src="thumbnail.png">](trafford_agricultural_land_classification_styled.geojson)
 
 </br>
 
