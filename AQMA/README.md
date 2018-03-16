@@ -1,4 +1,5 @@
-<strong>[Preview map](trafford_aqma_styled.geojson)</strong>
+[<img src="thumbnail.png">](trafford_aqma_styled.geojson)
+
 
 </br>
 
