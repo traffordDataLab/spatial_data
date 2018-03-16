@@ -1,5 +1,5 @@
 
-[<img src="thumbnail.png">](https://github.com/traffordDataLab/spatial_data/blob/master/greenspaces/trafford_greenspace_sites_styled.geojson)
+[<img src="thumbnail.png">](trafford_greenspace_sites_styled.geojson)
 
 
 </br>
