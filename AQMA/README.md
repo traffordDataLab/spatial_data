@@ -1,3 +1,7 @@
+<strong>[Preview map](https://www.trafforddatalab.io/spatial_data/agricultural_land_classification/trafford_aqma_styled.geojson)</strong>
+
+</br>
+
 <table>
 <colgroup>
 <col style="text-align:left;"/>
@@ -47,7 +51,8 @@
 	<td style="text-align:left;"><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence</a></td>
 </tr>
 <tr>
-	<td style="text-align:left;">GeoJSON; CSV</td>
+	<td style="text-align:left;"><strong>Format</strong></td>
+	<td style="text-align:left;">GeoJSON</td>
 </tr>
 <tr>
 	<td style="text-align:left;"><strong>Openness rating</strong></td>

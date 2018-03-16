@@ -4,14 +4,14 @@
 library(tidyverse); library(sf) ; library(geojsonio) ; library(RColorBrewer) ; library(leaflet)
 
 # read data ---------------------------
-geojson <- st_read("http://trafforddatalab.io/spatial_data/greenspaces/trafford_greenspace_sites.geojson")
+geojson <- st_read("http://trafforddatalab.io/spatial_data/AQMA/trafford_aqma.geojson")
 
 # apply styles ---------------------------
-geojson_styles <- geojson_style(geojson, var = 'site_type',
-                           stroke = brewer.pal(length(unique(geojson$site_type)), "Set2"),
+geojson_styles <- geojson_style(geojson, var = 'AQMA_Ref',
+                           stroke = "#727C81",
                            stroke_width = 3,
                            stroke_opacity = 1,
-                           fill = brewer.pal(length(unique(geojson$site_type)), "Set2"),
+                           fill = "#727C81",
                            fill_opacity = 0.8) %>% 
   rename(`stroke-width` = stroke.width,
          `stroke-opacity` = stroke.opacity,
@@ -26,8 +26,7 @@ leaflet() %>%
               weight = ~`stroke-width`, 
               opacity = ~`stroke-opacity`,
               fillColor = ~fill,
-              fillOpacity = ~`fill-opacity`,
-              label = ~site_type)
+              fillOpacity = ~`fill-opacity`)
 
 # write data ---------------------------
-st_write(geojson_styles, "trafford_greenspace_sites_styled.geojson")
+st_write(geojson_styles, "trafford_aqma_styled.geojson")
