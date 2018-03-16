@@ -1,4 +1,4 @@
-<strong>[Preview map](https://www.trafforddatalab.io/spatial_data/AQMA/trafford_aqma_styled.geojson)</strong>
+<strong>[Preview map](trafford_aqma_styled.geojson)</strong>
 
 </br>
 
