@@ -1,5 +1,6 @@
 
-<strong>[Preview map](https://github.com/traffordDataLab/spatial_data/blob/master/greenspaces/trafford_greenspace_sites_styled.geojson)</strong>
+[<img src="https://github.com/traffordDataLab/spatial_data/blob/master/greenspaces/thumbnail">](https://github.com/traffordDataLab/spatial_data/blob/master/greenspaces/trafford_greenspace_sites_styled.geojson)
+
 
 </br>
 
