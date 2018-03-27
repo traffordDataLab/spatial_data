@@ -5,6 +5,7 @@ This repository contains a range of digital vector boundary layers covering Grea
 - Combined Authority (2017)
 - Local Authority (2016)
 - Electoral Ward (2017)
+- Middle Layer Super Output Area (2011)
 - Lower-layer Super Output Area (2011)
 - Output Areas (2011)
 
