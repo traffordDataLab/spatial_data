@@ -5,6 +5,7 @@ This repository contains a range of digital vector boundary layers covering Grea
 - Combined Authority (2017)
 - Local Authority (2016)
 - Electoral Ward (2017)
+- Middle Layer Super Output Area (2011)
 - Lower-layer Super Output Area (2011)
 - Output Areas (2011)
 
@@ -18,6 +19,4 @@ It is recommended that high resolution layers are used for geospatial operations
 
 Maps using these boundaries must include the following copyright statement: "Contains National Statistics and OS data © Crown copyright and database right [YYYY]"
 
-Town centre locations in Trafford and a lookup for matching different statistical geographies are also included.
-
-**Licence**: [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+Town centre locations in Trafford, council locally defined boundaries and a lookup for matching different statistical geographies are also included.
