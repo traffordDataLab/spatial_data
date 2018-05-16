@@ -5,7 +5,7 @@
 # Licence: Open Government Licence 3.0
 
 # load libraries---------------------------
-library(tidyverse)
+library(tidyverse) ; library(sf)
 
 # Statistical lookup
 read_csv("OA11_LSOA11_MSOA11_LAD11_EW_LUv2.csv") %>% 
