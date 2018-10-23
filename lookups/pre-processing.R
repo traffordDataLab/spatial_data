@@ -36,7 +36,7 @@ lsoa_to_ward <- left_join(lsoa, lookup, by = "lsoa11cd")
 write_csv(lookup, "lsoa_to_ward_best-fit_lookup.csv")
 st_write(lsoa_to_ward, "lsoa_to_ward_best-fit_lookup.geojson")
 
-# Codelist
+# Codelist - statistical and administrative geography codes for Greater Manchester
 
 statistical_lookup <- read_csv("https://opendata.arcgis.com/datasets/fe6c55f0924b4734adf1cf7104a0173e_0.csv") %>% 
   filter(grepl('Bolton|Bury|Manchester|Oldham|Rochdale|Salford|Stockport|Tameside|Trafford|Wigan', LAD17NM)) %>% 
@@ -75,5 +75,5 @@ ca <- read_csv("https://opendata.arcgis.com/datasets/729dd1b2bd8141599e05356f284
   select(area_code = CAUTH17CD, area_name = CAUTH17NM) %>% 
   mutate(area_type = "Combined Authority")
 
-bind_rows(oa, lsoa, msoa, wards, la, ca) %>% 
+bind_rows(oa, lsoa, msoa, wards, la, ca) %>%
   write_csv("codelist.csv")
