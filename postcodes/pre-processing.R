@@ -9,7 +9,7 @@ library(tidyverse) ; library(sf)
 
 # read, tidy and write data ---------------------------
 sf <- st_read("https://www.trafforddatalab.io/spatial_data/ward/2017/trafford_ward_full_resolution.geojson") %>% 
-  select(area_code)
+  select(area_code, area_name)
 
 read_csv("http://geoportal.statistics.gov.uk/datasets/75edec484c5d49bcadd4893c0ebca0ff_0.csv") %>% 
   filter(oslaua == "E08000009") %>% 
@@ -18,5 +18,4 @@ read_csv("http://geoportal.statistics.gov.uk/datasets/75edec484c5d49bcadd4893c0e
   mutate(lon = map_dbl(geometry, ~st_coordinates(.x)[[1]]),
          lat = map_dbl(geometry, ~st_coordinates(.x)[[2]])) %>% 
   st_join(sf, join = st_within, left = FALSE) %>% 
-  select(1:3, lon, lat) %>% 
   write_csv("trafford_postcodes_2018-11.csv")
