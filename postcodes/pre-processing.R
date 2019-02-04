@@ -15,7 +15,8 @@ read_csv("http://geoportal.statistics.gov.uk/datasets/75edec484c5d49bcadd4893c0e
   filter(oslaua == "E08000009") %>% 
   select(postcode = pcds, lon = long, lat) %>% 
   st_as_sf(crs = 4326, coords = c("lon", "lat")) %>% 
+  st_join(sf, join = st_within, left = FALSE) %>%
   mutate(lon = map_dbl(geometry, ~st_coordinates(.x)[[1]]),
          lat = map_dbl(geometry, ~st_coordinates(.x)[[2]])) %>% 
-  st_join(sf, join = st_within, left = FALSE) %>% 
+  st_set_geometry(value = NULL) %>% 
   write_csv("trafford_postcodes_2018-11.csv")
