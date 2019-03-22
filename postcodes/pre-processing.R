@@ -1,22 +1,34 @@
 ## ONS Postcode Directory (Latest) Centroids ##
 
-# Source: Office for National Statistics
+# Source: ONS Open Geography Portal
 # Publisher URL: http://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids
 # Licence: Open Government Licence 3.0
 
 # load necessary packages ---------------------------
-library(tidyverse) ; library(sf)
+library(tidyverse) ; library(jsonlite)
 
-# read, tidy and write data ---------------------------
-sf <- st_read("https://www.trafforddatalab.io/spatial_data/ward/2017/trafford_ward_full_resolution.geojson") %>% 
-  select(area_code, area_name)
+# import and tidy data ---------------------------
+lookup <- tibble(
+  area_code = paste0("E0", seq(8000001, 8000010, by = 1)),
+  area_name = c("Bolton", "Bury", "Manchester", "Oldham", "Rochdale", "Salford", 
+                "Stockport", "Tameside", "Trafford", "Wigan"))
 
-read_csv("http://geoportal.statistics.gov.uk/datasets/75edec484c5d49bcadd4893c0ebca0ff_0.csv") %>% 
-  filter(oslaua == "E08000009") %>% 
-  select(postcode = pcds, lon = long, lat) %>% 
-  st_as_sf(crs = 4326, coords = c("lon", "lat")) %>% 
-  st_join(sf, join = st_within, left = FALSE) %>%
-  mutate(lon = map_dbl(geometry, ~st_coordinates(.x)[[1]]),
-         lat = map_dbl(geometry, ~st_coordinates(.x)[[2]])) %>% 
-  st_set_geometry(value = NULL) %>% 
-  write_csv("trafford_postcodes_2018-11.csv")
+query <- paste0("https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0/query?where=UPPER(oslaua)=%27", lookup$area_code, "%27&outFields=pcds,oslaua,lat,long&geometryPrecision=6&outSR=4326&f=json")
+
+postcodes <- map_df(query, function(i) {
+  cat(".")
+  df <- fromJSON(i, flatten = TRUE) %>% 
+    pluck("features") %>% 
+    as_tibble() %>% 
+    rename(area_code = attributes.oslaua) %>% 
+    bind_rows() %>% 
+    left_join(lookup, by = "area_code") %>% 
+    select(postcode = attributes.pcds,
+           area_code, area_name,
+           lon = attributes.long,
+           lat = attributes.lat)
+})
+
+# write data ---------------------------
+write_csv(postcodes, "gm_postcodes.csv")
+write_csv(filter(postcodes, area_name == "Trafford"), "trafford_postcodes.csv")
