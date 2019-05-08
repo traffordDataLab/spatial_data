@@ -5,7 +5,7 @@
 # Licence: Open Government Licence 3.0
 
 # load necessary packages ---------------------------
-library(tidyverse) ; library(jsonlite)
+library(tidyverse) ; library(jsonlite) ; library(sf)
 
 # import and tidy data ---------------------------
 lookup <- tibble(
@@ -31,4 +31,30 @@ postcodes <- map_df(query, function(i) {
 
 # write data ---------------------------
 write_csv(postcodes, "gm_postcodes.csv")
-write_csv(filter(postcodes, area_name == "Trafford"), "trafford_postcodes.csv")
+
+# add ward info to Trafford ---------------------------
+wards <- st_read("https://www.trafforddatalab.io/spatial_data/ward/2017/trafford_ward_full_resolution.geojson") %>% 
+  select(-lon, -lat) %>% 
+  mutate(locality = 
+           case_when(
+             area_name %in% c("Ashton upon Mersey", "Brooklands", "Priory", "St Mary\'s", "Sale Moor") ~ "Central",
+             area_name %in% c("Clifford", "Gorse Hill", "Longford", "Stretford") ~ "North",
+             area_name %in% c("Altrincham", "Bowdon", "Broadheath", "Hale Barns", "Hale Central", "Timperley", "Village") ~ "South",
+             area_name %in% c("Bucklow-St Martins", "Davyhulme East", "Davyhulme West", "Flixton", "Urmston") ~ "West"))
+
+trafford <- filter(postcodes, area_name == "Trafford") %>% 
+  st_as_sf(crs = 4326, coords = c("lon", "lat")) %>% 
+  select(postcode) %>% 
+  st_join(., wards, join = st_within) %>% 
+  mutate(lon = map_dbl(geometry, ~st_coordinates(.x)[[1]]),
+         lat = map_dbl(geometry, ~st_coordinates(.x)[[2]])) %>% 
+  st_set_geometry(NULL)
+
+write_csv(trafford, "trafford_postcodes.csv")
+
+
+
+
+
+
+
