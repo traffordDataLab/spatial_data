@@ -13,7 +13,7 @@
 </tr>
 <tr>
 	<td>Publisher</td>
-	<td>Trafford Council</td>
+	<td>Office for National Statistics (ONS)</td>
 </tr>
 <tr>
 	<td>Publisher URL</td>
