@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="ons-inspire.esriuk.com">ons-inspire.esriuk.com</a></td>
+	<td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://ons-inspire.esriuk.com">ons-inspire.esriuk.com</a></td>
 </tr>
 <tr>
 	<td>Format</td>
@@ -57,7 +57,7 @@
 </tr>
 <tr>
 	<td>Notes</td>
-	<td>Postcodes for a particular ward within Greater Manchester can be downloaded via our dedicated <a href="">Postcode Loader</a> app. These are queried from the API provided by the Office for National Statistics so is always the latest data available.</td>
+	<td>Postcodes for a particular ward within Greater Manchester can be downloaded via our dedicated <a href="https://trafforddatalab.shinyapps.io/postcode_loader/">Postcode Loader</a> app. These are queried from the API provided by the Office for National Statistics so is always the latest data available.</td>
 </tr>
 <tr>
 	<td>Lab visualisation</td>
