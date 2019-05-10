@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://ons-inspire.esriuk.com">ons-inspire.esriuk.com</a></td>
+	<td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a></td>
 </tr>
 <tr>
 	<td>Format</td>
