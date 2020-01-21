@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>February 2019</td>
+	<td>2019-11</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2019-05-08</td>
+	<td>2020-01-21</td>
 </tr>
 <tr>
 	<td>Notes</td>
