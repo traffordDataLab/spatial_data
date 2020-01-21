@@ -1,0 +1,90 @@
+---
+pagetitle: "Postcodes"
+lang: "en-GB"
+output:
+  html_document:
+    self_contained: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse) ; library(htmltools) ; library(DT) 
+
+df <- read_csv("trafford_postcodes.csv") %>% 
+  rename_all(. %>% str_to_title() %>% str_replace_all("_", " "))
+```
+
+<style>
+@import url("https://www.trafforddatalab.io/open_data/guidance/template/styles.css")
+</style>
+<header>
+<a href="https://www.trafforddatalab.io/data"><img src="https://www.trafforddatalab.io/assets/logo/trafforddatalab_logo.svg" alt="Trafford Data Lab" width="100" border="0" style="position:absolute; top:0; right:0; padding:5px;"/></a>
+
+# Postcodes
+*Postcode list for Trafford by ward and locality with centroids.*
+<br />
+</header>
+<main>
+## Metadata
+
+|Source |Publisher |Time period |Geography |Licence |Attribution |Last updated |
+|:---|:---|:---|:---|:---|:---|:---|
+|ONS Open Geography Portal |<a href="http://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids" target="_blank">Office for National Statistics (ONS)</a> |2019-11 |Point data |<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a> |ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a> |2020-01-21 |
+
+## Preview
+Sort, filter and export a selection of the data using the table. Postcodes for a particular ward within Greater Manchester can also be downloaded via our dedicated <a href="https://trafforddatalab.shinyapps.io/postcode_loader/">Postcode Loader</a> app. These are queried from the API provided by the Office for National Statistics so is always the latest data available.
+
+```{r preview}
+datatable(df, 
+          class = 'cell-border stripe',
+          rownames = FALSE, 
+          extensions = c('Scroller', 'Buttons', 'KeyTable'),
+          options = list(
+            keys = TRUE,
+            search = list(regex = TRUE),
+            searchHighlight = TRUE,
+            dom = 'ftB',
+            buttons = list(
+              list(extend = "csv", 
+                   text = "Download selection")),
+            deferRender = TRUE,
+            scrollX = TRUE,
+            scrollY = 300,
+            scroller = TRUE,
+            columnDefs = list(
+              list(className = 'dt-left', targets = "_all")
+              )))
+```
+<div style="text-align: center; color: #555;">
+  <em>Postcodes in Trafford</em>
+</div>
+
+## Data
+Download the complete dataset using the links below.
+
+|File name |Format |
+|:---|:---|
+|[trafford_postcodes](trafford_postcodes.csv) |CSV |
+
+## Pre-processing
+The <a href="https://cran.r-project.org" target="_blank">R</a> [script](pre-processing.R) used to process the data can adapted to other areas.<br /><br />
+</main>
+
+<script>
+  // Fixes to dynamic elements created by DataTables to improve accessibility
+  var removeElFn = setInterval(removeElement, 1000);
+  
+  function removeElement() {
+    try {
+      var el = document.getElementsByClassName("dataTables_scrollBody")[0].childNodes[0];
+      el.removeChild(el.childNodes[0]); // Remove unwanted hidden text element from table - causing accessibility alert as it has no label
+      
+      el.parentNode.setAttribute('tabindex', '0');  // add attribute allowing keyboard users to access scrollable area
+      
+      clearInterval(removeElFn);  // cancel any further calls to this function as we have completed all actions
+    }
+    catch(e) {
+      // form element 'el' doesn't exist yet so setInterval will call the function again until it does
+    }
+  }
+</script>
