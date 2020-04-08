@@ -29,7 +29,7 @@ df <- read_csv("trafford_postcodes.csv") %>%
 
 |Source |Publisher |Time period |Geography |Licence |Attribution |Last updated |
 |:---|:---|:---|:---|:---|:---|:---|
-|ONS Open Geography Portal |<a href="http://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids" target="_blank">Office for National Statistics (ONS)</a> |2019-11 |Point data |<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a> |ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a> |2020-01-21 |
+|ONS Open Geography Portal |<a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020" target="_blank">Office for National Statistics (ONS)</a> |2020-02 |Point data |<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a> |ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020">ons-inspire.esriuk.com</a> |2020-04-08 |
 
 ## Preview
 Sort, filter and export a selection of the data using the table. Postcodes for a particular ward within Greater Manchester can also be downloaded via our dedicated <a href="https://trafforddatalab.shinyapps.io/postcode_loader/">Postcode Loader</a> app. These are queried from the API provided by the Office for National Statistics so is always the latest data available.

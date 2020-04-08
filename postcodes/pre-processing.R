@@ -1,11 +1,11 @@
 ## ONS Postcode Directory (Latest) Centroids ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: http://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020
 # Licence: Open Government Licence 3.0
 
 # load necessary packages ---------------------------
-library(tidyverse) ; library(jsonlite) ; library(sf)
+library(tidyverse) ; library(sf)
 
 # import and tidy data ---------------------------
 lookup <- tibble(
@@ -13,21 +13,19 @@ lookup <- tibble(
   area_name = c("Bolton", "Bury", "Manchester", "Oldham", "Rochdale", "Salford", 
                 "Stockport", "Tameside", "Trafford", "Wigan"))
 
-query <- paste0("https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0/query?where=UPPER(oslaua)=%27", lookup$area_code, "%27&outFields=pcds,oslaua,lat,long&geometryPrecision=6&outSR=4326&f=json")
+url <- "https://www.arcgis.com/sharing/rest/content/items/82889274464b48ae8bf3e9458588a64b/data"
+download.file(url, dest = "ONSPD_FEB_2020_UK.zip")
+unzip("ONSPD_FEB_2020_UK.zip", exdir = ".")
+file.remove("ONSPD_FEB_2020_UK.zip")
 
-postcodes <- map_df(query, function(i) {
-  cat(".")
-  df <- fromJSON(i, flatten = TRUE) %>% 
-    pluck("features") %>% 
-    as_tibble() %>% 
-    rename(area_code = attributes.oslaua) %>% 
-    bind_rows() %>% 
-    left_join(lookup, by = "area_code") %>% 
-    select(postcode = attributes.pcds,
-           area_code, area_name,
-           lon = attributes.long,
-           lat = attributes.lat)
-})
+postcodes <- read_csv("ONSPD_FEB_2020_UK/Data/ONSPD_FEB_2020_UK.csv") %>% 
+  select(postcode = pcds,
+         area_code = oslaua,
+         lon = long,
+         lat = lat) %>% 
+  left_join(lookup, by = "area_code") %>% 
+  filter(!is.na(area_name)) %>% 
+  select(postcode, area_code, area_name, lon, lat)
 
 # write data ---------------------------
 write_csv(postcodes, "gm_postcodes.csv")
@@ -51,10 +49,3 @@ trafford <- filter(postcodes, area_name == "Trafford") %>%
   st_set_geometry(NULL)
 
 write_csv(trafford, "trafford_postcodes.csv")
-
-
-
-
-
-
-

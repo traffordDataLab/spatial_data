@@ -17,7 +17,7 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="http://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids">http://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>2019-11</td>
+	<td>2020-02</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2020-01-21</td>
+	<td>2020-04-08</td>
 </tr>
 <tr>
 	<td>Notes</td>
