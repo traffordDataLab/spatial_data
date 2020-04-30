@@ -25,15 +25,13 @@ las <- st_read(paste0("https://ons-inspire.esriuk.com/arcgis/rest/services/Admin
 
 - **Electoral wards**
 ```
-codes <- fromJSON(paste0("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD18_LAD18_UK_LU/FeatureServer/0/query?where=LAD18NM%20like%20'%25", URLencode(toupper(id), reserved = TRUE), "%25'&outFields=WD18CD,LAD18NM&outSR=4326&f=json"), flatten = TRUE) %>% 
-  pluck("features") %>% 
-  as_tibble() %>% 
-  distinct(attributes.WD18CD) %>% 
-  pull(attributes.WD18CD)
+lookup <- read_csv("https://opendata.arcgis.com/datasets/e169bb50944747cd83dcfb4dd66555b1_0.csv") %>% 
+  filter(LAD19NM == id) %>% 
+  pull(WD19CD)
 
-wards <- st_read(paste0("https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Wards_December_2018_Boundaries_V3/MapServer/2/query?where=", 
-                       URLencode(paste0("wd18cd IN (", paste(shQuote(codes), collapse = ", "), ")")), 
-                       "&outFields=wd18cd,wd18nm&outSR=4326&f=geojson"))
+wards <- st_read(paste0("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD_DEC_2019_UK_BGC/FeatureServer/0/query?where=", 
+                        URLencode(paste0("wd19cd IN (", paste(shQuote(lookup), collapse = ", "), ")")), 
+                        "&outFields=wd19cd,wd19nm&outSR=4326&f=geojson"))
 ```
 
 - **Middle Super Output Areas**
