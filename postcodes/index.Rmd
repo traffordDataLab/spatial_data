@@ -3,6 +3,7 @@ pagetitle: "Postcodes"
 lang: "en-GB"
 output:
   html_document:
+    css: ../../open_data/guidance/template/styles.css
     self_contained: TRUE
 ---
 
@@ -14,25 +15,43 @@ df <- read_csv("trafford_postcodes.csv") %>%
   rename_all(. %>% str_to_title() %>% str_replace_all("_", " "))
 ```
 
-<style>
-@import url("https://www.trafforddatalab.io/open_data/guidance/template/styles.css")
-</style>
 <header>
-<a href="https://www.trafforddatalab.io/data"><img src="https://www.trafforddatalab.io/assets/logo/trafforddatalab_logo.svg" alt="Trafford Data Lab" width="100" border="0" style="position:absolute; top:0; right:0; padding:5px;"/></a>
+<span id="a11yNav"><a href="#downloads" class="themeBlockDark">Skip to downloads</a></span>
+<a href="https://www.trafforddatalab.io/data.html"><img src="https://www.trafforddatalab.io/assets/logo/trafforddatalab_logo.svg" alt="Trafford Data Lab" aria-label="Return to Trafford Data Lab data page" width="100" class="traffordDataLabLogo"/></a>
 
-# Postcodes
+<h1>Postcodes</h1>
 *Postcode list for Trafford by ward and locality with centroids.*
-<br />
+
 </header>
+
 <main>
-## Metadata
+<h2>Metadata</h2>
 
-|Source |Publisher |Time period |Geography |Licence |Attribution |Last updated |
-|:---|:---|:---|:---|:---|:---|:---|
-|ONS Open Geography Portal |<a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020" target="_blank">Office for National Statistics (ONS)</a> |2020-02 |Point data |<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a> |ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020">ons-inspire.esriuk.com</a> |2020-04-08 |
+<table id="metadata" class="table table-condensed">
+  <thead>
+    <tr class="header">
+      <th>Source</th>
+      <th>Publisher</th>
+      <th>Time period</th>
+      <th>Geography</th>
+      <th>Licence</th>
+      <th>Attribution</th>
+      <th>Last updated</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>ONS Open Geography Portal</td>
+    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020" target="_blank">Office for National Statistics (ONS)</a></td>
+    <td><time datetime="2020-02">2020-02</time></td>
+    <td>Point data</td>
+    <td><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a></td>
+    <td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020" target="_blank">ons-inspire.esriuk.com</a></td>
+    <td><time datetime="2020-04-08">2020-04-08</time></td>
+  </tr>
+</table>
 
-## Preview
-Sort, filter and export a selection of the data using the table. Postcodes for a particular ward within Greater Manchester can also be downloaded via our dedicated <a href="https://trafforddatalab.shinyapps.io/postcode_loader/">Postcode Loader</a> app. These are queried from the API provided by the Office for National Statistics so is always the latest data available.
+<h2>Preview</h2>
+Sort, filter and export a selection of the data using the table. Postcodes for a particular ward within Greater Manchester can also be downloaded via our dedicated <a href="https://trafforddatalab.shinyapps.io/postcode_loader/" target="_blank">Postcode Loader app</a>. These are queried from the API provided by the Office for National Statistics so is always the latest data available.
 
 ```{r preview}
 datatable(df, 
@@ -55,19 +74,18 @@ datatable(df,
               list(className = 'dt-left', targets = "_all")
               )))
 ```
-<div style="text-align: center; color: #555;">
-  <em>Postcodes in Trafford</em>
-</div>
+<div id="tableFooterTitle">Postcodes in Trafford</div>
 
-## Data
-Download the complete dataset using the links below.
+<h2>Data</h2>
+<span id ="downloads">Download the complete dataset using the following link:</span>
 
 |File name |Format |
-|:---|:---|
-|[trafford_postcodes](trafford_postcodes.csv) |CSV |
+|---|---|
+|[trafford_postcodes.csv](trafford_postcodes.csv) |CSV |
 
-## Pre-processing
-The <a href="https://cran.r-project.org" target="_blank">R</a> [script](pre-processing.R) used to process the data can adapted to other areas.<br /><br />
+<h2>Pre-processing</h2>
+[The R script used to process the data](pre-processing.R) can be adapted to other areas. For information about R visit the <a href="https://cran.r-project.org" target="_blank">CRAN website</a>.
+
 </main>
 
 <script>
