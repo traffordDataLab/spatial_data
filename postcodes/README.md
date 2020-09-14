@@ -17,7 +17,7 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2020">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2020</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>2020-02</td>
+	<td>2020-08</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -37,11 +37,11 @@
 </tr>
 <tr>
 	<td>Licence</td>
-	<td><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence 3.0</a> ; <a href="https://www.openstreetmap.org/copyright">Open Data Commons Open Database License (ODbL)</a></td>
+	<td><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence 3.0</a></td>
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a></td>
+	<td>ONS Geography Open Data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a></br>Contains National Statistics data © Crown copyright and database right 2020</td>
 </tr>
 <tr>
 	<td>Format</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2020-04-08</td>
+	<td>2020-09-14</td>
 </tr>
 <tr>
 	<td>Notes</td>

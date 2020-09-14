@@ -41,12 +41,12 @@ df <- read_csv("trafford_postcodes.csv") %>%
   </thead>
   <tr>
     <td>ONS Open Geography Portal</td>
-    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020" target="_blank">Office for National Statistics (ONS)</a></td>
-    <td><time datetime="2020-02">2020-02</time></td>
+    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2020" target="_blank">Office for National Statistics (ONS)</a></td>
+    <td><time datetime="2020-08">2020-08</time></td>
     <td>Point data</td>
     <td><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a></td>
-    <td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020" target="_blank">ons-inspire.esriuk.com</a></td>
-    <td><time datetime="2020-04-08">2020-04-08</time></td>
+    <td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2020" target="_blank">ons-inspire.esriuk.com</a></td>
+    <td><time datetime="2020-08-14">2020-08-14</time></td>
   </tr>
 </table>
 
@@ -82,6 +82,7 @@ datatable(df,
 |File name |Format |
 |---|---|
 |[trafford_postcodes.csv](trafford_postcodes.csv) |CSV |
+|[gm_postcodes.csv](gm_postcodes.csv) |CSV |
 
 <h2>Pre-processing</h2>
 [The R script used to process the data](pre-processing.R) can be adapted to other areas. For information about R visit the <a href="https://cran.r-project.org" target="_blank">CRAN website</a>.

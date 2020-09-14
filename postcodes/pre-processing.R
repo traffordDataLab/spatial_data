@@ -1,51 +1,59 @@
 ## ONS Postcode Directory (Latest) Centroids ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2020
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2020
 # Licence: Open Government Licence 3.0
 
 # load necessary packages ---------------------------
 library(tidyverse) ; library(sf)
 
 # import and tidy data ---------------------------
-lookup <- tibble(
-  area_code = paste0("E0", seq(8000001, 8000010, by = 1)),
-  area_name = c("Bolton", "Bury", "Manchester", "Oldham", "Rochdale", "Salford", 
-                "Stockport", "Tameside", "Trafford", "Wigan"))
 
-url <- "https://www.arcgis.com/sharing/rest/content/items/82889274464b48ae8bf3e9458588a64b/data"
-download.file(url, dest = "ONSPD_FEB_2020_UK.zip")
-unzip("ONSPD_FEB_2020_UK.zip", exdir = ".")
-file.remove("ONSPD_FEB_2020_UK.zip")
+gm<- "Greater Manchester"
+lookup_ward_la_gm <- fromJSON(paste0("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD19_LAD19_CTY19_OTH_UK_LU/FeatureServer/0/query?where=",
+URLencode(paste0("CTY19NM = '", gm , "'"), reserved = TRUE),
+                       "&outFields=wd19cd,wd19nm,lad19cd,lad19nm&outSR=4326&f=json"), flatten = T)%>%
+  pluck("features") %>%
+  select(ward_code = attributes.WD19CD,
+         ward_name = attributes.WD19NM,
+         la_code = attributes.LAD19CD,
+         la_name = attributes.LAD19NM)
 
-postcodes <- read_csv("ONSPD_FEB_2020_UK/Data/ONSPD_FEB_2020_UK.csv") %>% 
+msoa <- read_csv("https://visual.parliament.uk/msoanames/static/MSOA-Names-1.4.0.csv") %>% 
+  filter(Laname %in% unique(lookup_ward_la_gm$la_name)) %>%
+  select(msoa_code=msoa11cd,msoa_hcl_name=msoa11hclnm)
+
+url <- "https://www.arcgis.com/sharing/rest/content/items/a644dd04d18f4592b7d36705f93270d8/data"
+download.file(url, dest = "ONSPD_AUG_2020_UK.zip")
+unzip("ONSPD_AUG_2020_UK.zip", exdir = "ONSPD_AUG_2020_UK")
+file.remove("ONSPD_AUG_2020_UK.zip")
+
+postcodes_gm <- read_csv("ONSPD_AUG_2020_UK/Data/ONSPD_AUG_2020_UK.csv") %>% 
+  filter(oslaua %in% unique(lookup_ward_la_gm$la_code)) %>%
   select(postcode = pcds,
-         area_code = oslaua,
+         ward_code = osward,
+         msoa_code = msoa11,
+         la_code = oslaua,
          lon = long,
          lat = lat) %>% 
-  left_join(lookup, by = "area_code") %>% 
-  filter(!is.na(area_name)) %>% 
-  select(postcode, area_code, area_name, lon, lat)
+  left_join(lookup_ward_la_gm %>% select(ward_code,ward_name,la_name), by = "ward_code") %>% 
+  left_join(msoa, by = "msoa_code") %>%
+  select(postcode, ward_code, ward_name, msoa_code, msoa_hcl_name, la_code, la_name, lon, lat)
 
 # write data ---------------------------
-write_csv(postcodes, "gm_postcodes.csv")
+write_csv(postcodes_gm, "gm_postcodes.csv")
 
-# add ward info to Trafford ---------------------------
-wards <- st_read("https://www.trafforddatalab.io/spatial_data/ward/2017/trafford_ward_full_resolution.geojson") %>% 
-  select(-lon, -lat) %>% 
+# add localities info to Trafford ---------------------------
+
+trafford_postcodes <- postcodes_gm %>%
+  filter(la_name=="Trafford") %>%
   mutate(locality = 
            case_when(
-             area_name %in% c("Ashton upon Mersey", "Brooklands", "Priory", "St Mary\'s", "Sale Moor") ~ "Central",
-             area_name %in% c("Clifford", "Gorse Hill", "Longford", "Stretford") ~ "North",
-             area_name %in% c("Altrincham", "Bowdon", "Broadheath", "Hale Barns", "Hale Central", "Timperley", "Village") ~ "South",
-             area_name %in% c("Bucklow-St Martins", "Davyhulme East", "Davyhulme West", "Flixton", "Urmston") ~ "West"))
+             ward_name %in% c("Ashton upon Mersey", "Brooklands", "Priory", "St Mary's", "Sale Moor") ~ "Central",
+             ward_name %in% c("Clifford", "Gorse Hill", "Longford", "Stretford") ~ "North",
+             ward_name %in% c("Altrincham", "Bowdon", "Broadheath", "Hale Barns", "Hale Central", "Timperley", "Village") ~ "South",
+             ward_name %in% c("Bucklow-St Martins", "Davyhulme East", "Davyhulme West", "Flixton", "Urmston") ~ "West")) %>%
+  select(postcode, ward_code, ward_name, msoa_code, msoa_hcl_name, locality, la_code, la_name, lon, lat)
 
-trafford <- filter(postcodes, area_name == "Trafford") %>% 
-  st_as_sf(crs = 4326, coords = c("lon", "lat")) %>% 
-  select(postcode) %>% 
-  st_join(., wards, join = st_within) %>% 
-  mutate(lon = map_dbl(geometry, ~st_coordinates(.x)[[1]]),
-         lat = map_dbl(geometry, ~st_coordinates(.x)[[2]])) %>% 
-  st_set_geometry(NULL)
 
-write_csv(trafford, "trafford_postcodes.csv")
+write_csv(trafford_postcodes, "trafford_postcodes.csv")
