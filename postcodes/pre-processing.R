@@ -1,11 +1,11 @@
 ## ONS Postcode Directory (Latest) Centroids ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2020
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2021
 # Licence: Open Government Licence 3.0
 
 # load necessary packages ---------------------------
-library(tidyverse) ; library(sf)
+library(tidyverse) ; library(sf) ; library(jsonlite)
 
 # import and tidy data ---------------------------
 
@@ -19,16 +19,17 @@ URLencode(paste0("CTY19NM = '", gm , "'"), reserved = TRUE),
          la_code = attributes.LAD19CD,
          la_name = attributes.LAD19NM)
 
-msoa <- read_csv("https://visual.parliament.uk/msoanames/static/MSOA-Names-1.4.0.csv") %>% 
+# Using the static filename for the latest MSOA-Names due to the version number changing. You can find the latest version at: https://visual.parliament.uk/msoanames
+msoa <- read_csv("https://visual.parliament.uk/msoanames/static/MSOA-Names-Latest.csv") %>% 
   filter(Laname %in% unique(lookup_ward_la_gm$la_name)) %>%
   select(msoa_code=msoa11cd,msoa_hcl_name=msoa11hclnm)
 
-url <- "https://www.arcgis.com/sharing/rest/content/items/a644dd04d18f4592b7d36705f93270d8/data"
-download.file(url, dest = "ONSPD_AUG_2020_UK.zip")
-unzip("ONSPD_AUG_2020_UK.zip", exdir = "ONSPD_AUG_2020_UK")
-file.remove("ONSPD_AUG_2020_UK.zip")
+url <- "https://www.arcgis.com/sharing/rest/content/items/b8920bf40db14e04a59c331d1663d26e/data"
+download.file(url, dest = "ONSPD_FEB_2021_UK.zip")
+unzip("ONSPD_FEB_2021_UK.zip", exdir = "ONSPD_FEB_2021_UK")
+file.remove("ONSPD_FEB_2021_UK.zip")
 
-postcodes_gm <- read_csv("ONSPD_AUG_2020_UK/Data/ONSPD_AUG_2020_UK.csv") %>% 
+postcodes_gm <- read_csv("ONSPD_FEB_2021_UK/Data/ONSPD_FEB_2021_UK.csv") %>% 
   filter(oslaua %in% unique(lookup_ward_la_gm$la_code)) %>%
   select(postcode = pcds,
          ward_code = osward,
