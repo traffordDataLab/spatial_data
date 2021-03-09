@@ -19,8 +19,9 @@ URLencode(paste0("CTY19NM = '", gm , "'"), reserved = TRUE),
          la_code = attributes.LAD19CD,
          la_name = attributes.LAD19NM)
 
-# Using the static filename for the latest MSOA-Names due to the version number changing. You can find the latest version at: https://visual.parliament.uk/msoanames
-msoa <- read_csv("https://visual.parliament.uk/msoanames/static/MSOA-Names-Latest.csv") %>% 
+# Using the MSOA name file from: https://visual.parliament.uk/msoanames
+# There is a static URL available with the latest data, however for reproducibility we use the specific version file
+msoa <- read_csv("https://visual.parliament.uk/msoanames/static/MSOA-Names-1.12.csv") %>% 
   filter(Laname %in% unique(lookup_ward_la_gm$la_name)) %>%
   select(msoa_code=msoa11cd,msoa_hcl_name=msoa11hclnm)
 
