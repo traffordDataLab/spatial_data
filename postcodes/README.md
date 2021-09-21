@@ -17,7 +17,7 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2021">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-february-2021</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2021">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2021</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>2021-02</td>
+	<td>2021-08</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2021-03-09</td>
+	<td>2021-09-21</td>
 </tr>
 <tr>
 	<td>Notes</td>
