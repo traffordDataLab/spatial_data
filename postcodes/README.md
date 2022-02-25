@@ -17,7 +17,7 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2021">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2021</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2022/about">https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2022/about</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>2021-08</td>
+	<td>2022-02</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a></br>Contains National Statistics data © Crown copyright and database right 2021</td>
+	<td>ONS Geography Open Data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a></br>Contains National Statistics data © Crown copyright and database right 2022. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
 </tr>
 <tr>
 	<td>Format</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2021-09-21</td>
+	<td>2022-02-25</td>
 </tr>
 <tr>
 	<td>Notes</td>
