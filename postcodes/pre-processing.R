@@ -1,7 +1,7 @@
-## ONS Postcode Directory (August 2021) ##
+## ONS Postcode Directory (May 2022) ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2022/about
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2022/about
 # Licence: Open Government Licence 3.0
 
 # load necessary packages ---------------------------
@@ -29,12 +29,12 @@ lsoa <- read_csv("https://www.trafforddatalab.io/spatial_data/lookups/statistica
   select(lsoa_code = lsoa11cd, lsoa_name = lsoa11nm) %>%
   unique()
 
-url <- "https://www.arcgis.com/sharing/rest/content/items/3cee8796c4aa408581c55361a5ddc967/data"
-download.file(url, dest = "ONSPD_FEB_2022_UK.zip")
-unzip("ONSPD_FEB_2022_UK.zip", exdir = "ONSPD_FEB_2022_UK")
-file.remove("ONSPD_FEB_2022_UK.zip")
+url <- "https://www.arcgis.com/sharing/rest/content/items/39469ce1ae6441e7bc10ba0ba1ed5572/data"
+download.file(url, dest = "ONSPD_MAY_2022_UK.zip")
+unzip("ONSPD_MAY_2022_UK.zip", exdir = "ONSPD_MAY_2022_UK")
+file.remove("ONSPD_MAY_2022_UK.zip")
 
-postcodes_gm <- read_csv("ONSPD_FEB_2022_UK/Data/ONSPD_FEB_2022_UK.csv") %>% 
+postcodes_gm <- read_csv("ONSPD_MAY_2022_UK/Data/ONSPD_MAY_2022_UK.csv") %>% 
   filter(oslaua %in% unique(lookup_ward_la_gm$la_code)) %>%
   select(postcode = pcds,
          ward_code = osward,
@@ -65,3 +65,7 @@ trafford_postcodes <- postcodes_gm %>%
 
 
 write_csv(trafford_postcodes, "trafford_postcodes.csv")
+
+
+# Tidy up filesystem ---------------------------
+unlink("ONSPD_MAY_2022_UK", recursive = TRUE)

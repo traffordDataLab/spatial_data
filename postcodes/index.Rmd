@@ -41,12 +41,12 @@ df <- read_csv("trafford_postcodes.csv") %>%
   </thead>
   <tr>
     <td>ONS Open Geography Portal</td>
-    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2022/about" target="_blank">Office for National Statistics (ONS)</a></td>
-    <td><time datetime="2022-02">2022-02</time></td>
+    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2022/about" target="_blank">Office for National Statistics (ONS)</a></td>
+    <td><time datetime="2022-05">2022-05</time></td>
     <td>Point data</td>
     <td><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a></td>
-    <td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2022/about" target="_blank">ons-inspire.esriuk.com</a></td>
-    <td><time datetime="2022-02-25">2022-02-25</time></td>
+    <td>ONS Geography Open Data. Shared by: ONSGeography_data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2022/about" target="_blank">ons-inspire.esriuk.com</a></td>
+    <td><time datetime="2022-06-10">2022-06-10</time></td>
   </tr>
 </table>
 
