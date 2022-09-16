@@ -7,16 +7,16 @@ library(sf) ; library(tidyverse)
 # Load source boundaries for whole country in all resolutions ---------
 
 # Full resolution
-# Source: https://geoportal.statistics.gov.uk/datasets/ons::lower-layer-super-output-areas-december-2021-boundaries-full-clipped-ew-bfc/explore?location=52.783351%2C-2.489483%2C7.00
+# Source: https://geoportal.statistics.gov.uk/datasets/ons::lower-layer-super-output-areas-december-2021-boundaries-full-clipped-ew-bfc/about
 all_full <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LSOA_2021_EW_BFC_V2/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
   select(area_code = LSOA21CD, area_name = LSOA21NM) %>% 
   st_as_sf(crs = 4326, coords = c("long", "lat"))
 
 # Generalised resolution
-# Source: Not available yet
-# all_gen <- st_read("") %>%
-#   select(area_code = LSOA21CD, area_name = LSOA21NM) %>% 
-#   st_as_sf(crs = 4326, coords = c("long", "lat"))
+# Source: https://geoportal.statistics.gov.uk/datasets/ons::lower-layer-super-output-areas-december-2021-boundaries-generalised-clipped-ew-bgc/about
+all_gen <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Lower_layer_Super_Output_Areas_Decemeber_2021_EW_BGC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
+  select(area_code = LSOA21CD, area_name = LSOA21NM) %>% 
+  st_as_sf(crs = 4326, coords = c("long", "lat"))
 
 # Super generalised resolution
 # Source: Not available yet
