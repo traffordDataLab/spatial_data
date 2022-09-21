@@ -1,15 +1,15 @@
-## Super Output Areas ##
+## Output Areas (December 2021) ##
 # 2022-09-16
 
 # load necessary packages
 library(sf) ; library(tidyverse)
 
-# Load statistical lookup CSV to match the OA codes to Local Authorities
+# Load statistical lookup CSV to match the OA area codes to Local Authorities so that we can isolate the OAs for Greater Manchester and Trafford
 # Source: https://geoportal.statistics.gov.uk/datasets/output-area-to-lower-layer-super-output-area-to-middle-layer-super-output-area-to-local-authority-district-december-2021-lookup-in-england-and-wales-v2/about
 df_lookup <- read_csv("https://www.arcgis.com/sharing/rest/content/items/9f0bc2c6fbc9427ba11db01759e5f6d8/data") %>%
   select(area_code = oa21cd, la_code = lad22cd, la_name = lad22nm)
 
-# Store the LA codes for all Greater Manchester authorities as we'll use them a few times
+# Store the LA area codes for all Greater Manchester authorities as we'll use them a few times
 gm_la_codes <- c("E08000001","E08000002","E08000003","E08000004","E08000005","E08000006","E08000007","E08000008","E08000009","E08000010")
 
 
