@@ -3,17 +3,17 @@
 This repository contains a range of digital vector boundary layers covering Greater Manchester and Trafford:
 
 - Combined Authority (2017)
-- Local Authority (2016)
+- Local Authority (2016, 2021)
 - Electoral Ward (2017)
-- Middle Layer Super Output Area (2011)
-- Lower-layer Super Output Area (2011)
-- Output Areas (2011)
+- Middle Layer Super Output Area (2011, 2021)
+- Lower-layer Super Output Area (2011, 2021)
+- Output Areas (2011, 2021)
 
 Each digital vector boundary layer is available in different resolutions:
 
 - Full resolution
 - Generalised (20m)
-- Super generalised (200m)
+- Super generalised (200m) or Ultra generalised (500m)
 
 It is recommended that high resolution layers are used for geospatial operations e.g. point in polygon and lower resolution layers for interactive maps.
 
