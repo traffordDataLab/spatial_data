@@ -1,5 +1,5 @@
 ## Middle-layer Super Output Areas ##
-# 2022-09-14
+# 2022-09-14, Last updated: 2022-09-29
 
 # load necessary packages
 library(sf) ; library(tidyverse)
@@ -19,10 +19,10 @@ all_gen <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/se
   st_as_sf(crs = 4326, coords = c("long", "lat"))
 
 # Super generalised resolution
-# Source: Not available yet
-# all_super_gen <- st_read("") %>%
-#   select(area_code = MSOA21CD, area_name = MSOA21NM) %>% 
-#   st_as_sf(crs = 4326, coords = c("long", "lat"))
+# Source: https://geoportal.statistics.gov.uk/datasets/ons::middle-layer-super-output-areas-december-2021-boundaries-super-generalised-clipped-ew-bsc/about
+all_super_gen <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/MSOA_2021_EW_BSC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
+  select(area_code = MSOA21CD, area_name = MSOA21NM) %>% 
+  st_as_sf(crs = 4326, coords = c("long", "lat"))
 
 
 # Extract just Greater Manchester boundaries ---------
