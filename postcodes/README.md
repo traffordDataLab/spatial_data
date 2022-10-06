@@ -17,7 +17,7 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2022/about">https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2022/about</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2022/about">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2022/about</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
@@ -29,11 +29,11 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>2022-05</td>
+	<td>2022-08</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
-	<td>Not known</td>
+	<td>Quarterly</td>
 </tr>
 <tr>
 	<td>Licence</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2022-06-10</td>
+	<td>2022-10-06</td>
 </tr>
 <tr>
 	<td>Notes</td>
