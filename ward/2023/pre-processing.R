@@ -12,6 +12,7 @@ library(tidyverse); library(sf);
 trafford_wards_2023 <- read_sf("trafford_wards_2023_trafford_planning_team.geojson") %>%
     # Calculate and store the coordinates of each ward's centroid as a "lat" and "lon" property
     mutate(lon = map_dbl(geometry, ~st_centroid(.x)[[1]]),
-           lat = map_dbl(geometry, ~st_centroid(.x)[[2]])) %>%
-    select(area_name = Ward_name, lat, lon) %>%
+           lat = map_dbl(geometry, ~st_centroid(.x)[[2]]),
+           area_name = str_replace(Ward_name, " Ward", "")) %>%
+    select(area_name, lat, lon) %>%
     st_write("trafford_ward_full_resolution.geojson")
