@@ -1,5 +1,5 @@
 # Trafford localities
-## 2017 - 2022
+## 2017 - April 2023
 
 Trafford is split into four localities: Central, North, South and West, based on groupings of the electoral wards.   
 
