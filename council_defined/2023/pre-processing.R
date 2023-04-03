@@ -4,7 +4,7 @@
 # They are aligned to the new ward boundaries which come into effect from May 2023.
 
 # load necessary packages
-library(sf) ; library(tidyverse) ;
+library(sf) ; library(tidyverse) ; library(nngeo) ;
 
 
 ## NOTE: The following code contains a lot of lines/sections commented out. This is because at the time of writing the new ward boundaries are not available from the OS Geography Portal. Using our locally created file for now.
@@ -52,6 +52,9 @@ group_wards_into_localities <- function(ward_geometry, resolution_name) {
     # Calculate and store the coordinates of each locality's centroid as a "lat" and "lon" property
     mutate(lon = map_dbl(geometry, ~st_centroid(.x)[[1]]),
            lat = map_dbl(geometry, ~st_centroid(.x)[[2]])) %>%
+    
+    # Some "artifacts" (small polygons) seem to be present within the Central and South localities - probably loose ends when creating the ward boundaries. This removes them    
+    st_remove_holes() %>%
     
     # Create the new spatial file
     st_write(paste0("trafford_localities_", resolution_name, ".geojson"))
