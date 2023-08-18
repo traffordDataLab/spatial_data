@@ -1,18 +1,24 @@
 # Trafford ward geographies from May 2023 onward.
-# 2023-03-29 James Austin.
-# Source: Internal Trafford Planning team. 
-# NOTE: This will be supplied to Ordnance Survey and eventually we'll get it via the OS Geography Portal as usual for reproducibility.
+# Source: ONS
+# URL: https://geoportal.statistics.gov.uk/
 
 
 # Load the required libraries ---------------------------
 library(tidyverse); library(sf);
 
+df_fr <- read_sf("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD_MAY_2023_UK_BFC/FeatureServer/0/query?where=LAD23NM%20%3D%20'TRAFFORD'&outFields=*&outSR=4326&f=json") %>%
+  select(area_code = WD23CD, area_name = WD23NM, lon = LONG, lat = LAT, area = Shape__Area)
 
-# Prepare the geography with lat/lon for each ward, rename variables consistently etc. ---------------------------
-trafford_wards_2023 <- read_sf("trafford_wards_2023_trafford_planning_team.geojson") %>%
-    # Calculate and store the coordinates of each ward's centroid as a "lat" and "lon" property
-    mutate(lon = map_dbl(geometry, ~st_centroid(.x)[[1]]),
-           lat = map_dbl(geometry, ~st_centroid(.x)[[2]]),
-           area_name = str_replace(Ward_name, " Ward", "")) %>%
-    select(area_name, lat, lon) %>%
-    st_write("trafford_ward_full_resolution.geojson")
+st_write(df_fr, "trafford_ward_full_resolution.geojson")
+
+df_gen <- read_sf("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD_MAY_2023_UK_BGC/FeatureServer/0/query?where=LAD23NM%20%3D%20'TRAFFORD'&outFields=*&outSR=4326&f=json") %>%
+  select(area_code = WD23CD, area_name = WD23NM, lon = LONG, lat = LAT, area = Shape__Area)
+
+st_write(df_gen, "trafford_ward_generalised.geojson")
+
+df_super <- read_sf("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD_MAY_2023_UK_BSC/FeatureServer/0/query?where=LAD23NM%20%3D%20'TRAFFORD'&outFields=*&outSR=4326&f=json") %>%
+  select(area_code = WD23CD, area_name = WD23NM, lon = LONG, lat = LAT, area = Shape__Area)
+
+st_write(df_super, "trafford_ward_super_generalised.geojson")
+
+
