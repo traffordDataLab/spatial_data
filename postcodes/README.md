@@ -17,11 +17,11 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2023/about">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-august-2023/about</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-november-2023/about">https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-november-2023/about</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
-	<td>Local Authority</td>
+	<td>Local Authority, Ward, MSOA, LSOA</td>
 </tr>
 <tr>
 	<td>Geographic coverage</td>
@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>Correct at 2023-08-23</td>
+	<td>Correct at 2023-11-29</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Data Source: <a href="https://ons-inspire.esriuk.com/arcgis/rest/services/Postcodes/ONS_Postcode_Directory_Latest_Centroids/MapServer/0">ons-inspire.esriuk.com</a><br />Contains National Statistics data © Crown copyright and database right 2023. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
+	<td>ONS Geography Open Data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-november-2023/about">ONS Postcode Directory (November 2023)</a><br />Contains National Statistics data © Crown copyright and database right 2023. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
 </tr>
 <tr>
 	<td>Format</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2023-09-05</td>
+	<td>2023-11-30</td>
 </tr>
 <tr>
 	<td>Notes</td>
