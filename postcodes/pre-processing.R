@@ -1,7 +1,7 @@
-## ONS Postcode Directory (November 2023) ##
+## ONS Postcode Directory (May 2024) ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-november-2023/about
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2024/about
 # Licence: Open Government Licence 3.0
 
 # NOTES:
@@ -14,15 +14,15 @@ library(tidyverse) ; library(jsonlite) ; library(httr) ; library(sf)
 
 # Wards ---------
 # Obtain lookup for Greater Manchester containing all the wards and their associated LAs
-# Source: https://geoportal.statistics.gov.uk/datasets/ons::ward-to-local-authority-district-may-2023-lookup-in-the-united-kingdom/about
-lookup_ward_la_gm <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD23_LAD23_UK_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
+# Source: https://geoportal.statistics.gov.uk/datasets/ons::ward-to-local-authority-district-may-2024-lookup-in-the-uk/about
+lookup_ward_la_gm <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD24_LAD24_UK_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
     st_drop_geometry() %>%
-    filter(LAD23NM %in% c("Bolton","Bury","Manchester","Oldham","Rochdale","Salford","Stockport","Tameside","Trafford","Wigan")) %>% 
-    arrange(LAD23NM, WD23CD) %>%
-    select(ward_code = WD23CD,
-           ward_name = WD23NM,
-           la_code = LAD23CD,
-           la_name = LAD23NM)
+    filter(LAD24NM %in% c("Bolton","Bury","Manchester","Oldham","Rochdale","Salford","Stockport","Tameside","Trafford","Wigan")) %>% 
+    arrange(LAD24NM, WD24CD) %>%
+    select(ward_code = WD24CD,
+           ward_name = WD24NM,
+           la_code = LAD24CD,
+           la_name = LAD24NM)
 
 
 # Using the MSOA name file from: https://houseofcommonslibrary.github.io/msoanames/
@@ -33,7 +33,7 @@ msoa <- read_csv("https://houseofcommonslibrary.github.io/msoanames/MSOA-Names-2
 
 
 # Statistical lookup OA -> LSOA -> MSOA -> LAD to get the LSOAs in each Greater Manchester LA
-# Source: https://geoportal.statistics.gov.uk/datasets/ons::output-area-to-lower-layer-super-output-area-to-middle-layer-super-output-area-to-local-authority-district-december-2021-lookup-in-england-and-wales-v3/explore
+# Source: https://geoportal.statistics.gov.uk/datasets/ons::output-area-2021-to-lsoa-to-msoa-to-lad-december-2021-exact-fit-lookup-in-ew-v3/about
 lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/OA_LSOA_MSOA_EW_DEC_2021_LU_v3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
     st_drop_geometry() %>%
     filter(LAD22NM %in% unique(lookup_ward_la_gm$la_name)) %>%
@@ -42,11 +42,11 @@ lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/servi
 
 
 # Now download the actual postcodes file ---------
-pcode_file_reference <- "ONSPD_NOV_2023_UK" # makes it easier to change this once here than throughout the code below
+pcode_file_reference <- "ONSPD_MAY_2024_UK" # makes it easier to change this once here than throughout the code below
 
-# https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-november-2023/about
+# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2024/about
 tmp <- tempfile(fileext = ".zip")
-GET(url = "https://www.arcgis.com/sharing/rest/content/items/3700342d3d184b0d92eae99a78d9c7a3/data",
+GET(url = "https://www.arcgis.com/sharing/rest/content/items/a8a2d8d31db84ceea45b261bb7756771/data",
     write_disk(tmp))
 
 unzip(tmp, exdir = pcode_file_reference) # extract the contents of the zip
