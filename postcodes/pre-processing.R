@@ -1,7 +1,7 @@
-## ONS Postcode Directory (May 2024) ##
+## ONS Postcode Directory (February 2025) ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2024/about
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2025-for-the-uk/about
 # Licence: Open Government Licence 3.0
 
 # NOTES:
@@ -42,11 +42,11 @@ lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/servi
 
 
 # Now download the actual postcodes file ---------
-pcode_file_reference <- "ONSPD_MAY_2024_UK" # makes it easier to change this once here than throughout the code below
+pcode_file_reference <- "ONSPD_FEB_2025_UK" # makes it easier to change this once here than throughout the code below
 
-# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2024/about
+# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2025-for-the-uk/about
 tmp <- tempfile(fileext = ".zip")
-GET(url = "https://www.arcgis.com/sharing/rest/content/items/a8a2d8d31db84ceea45b261bb7756771/data",
+GET(url = "https://www.arcgis.com/sharing/rest/content/items/6fb8941d58e54d949f521c92dfb92f2a/data",
     write_disk(tmp))
 
 unzip(tmp, exdir = pcode_file_reference) # extract the contents of the zip
