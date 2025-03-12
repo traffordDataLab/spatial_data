@@ -21,7 +21,7 @@ df <- read_csv("trafford_postcodes.csv") %>%
 <a href="https://www.trafforddatalab.io/data.html"><img src="https://www.trafforddatalab.io/assets/logo/trafforddatalab_logo.svg" alt="Trafford Data Lab" aria-label="Return to Trafford Data Lab data page" width="100" class="traffordDataLabLogo"/></a>
 
 <h1>Postcodes</h1>
-*Postcode list for Trafford and Greater Manchester by LA, Ward, MSOA and LSOA with centroids. Trafford file also contains localities.*
+*Postcode list for Trafford and Greater Manchester (GM) by LA, Ward, MSOA and LSOA with centroids. Trafford file also contains localities.*
 
 </header>
 
@@ -41,12 +41,12 @@ df <- read_csv("trafford_postcodes.csv") %>%
     </tr>
   </thead>
   <tr>
-    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2024/about" target="_blank">ONS Open Geography Portal</a></td>
+    <td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-february-2025-for-the-uk/about" target="_blank">ONS Open Geography Portal</a></td>
     <td><a href="https://www.ons.gov.uk/" target="_blank">Office for National Statistics (ONS)</a></td>
     <td><time datetime="2025-02-13">2025-02-13</time></td>
     <td>Point data</td>
     <td><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">OGL v3.0</a></td>
-    <td>ONS postcode products (derived from Code-Point&reg; Open) are subject to the Open Government Licence.</td>
+    <td>Contains OS data &copy; Crown copyright and database right 2025. Contains Royal Mail data &copy; Royal Mail copyright and database right 2025. ONS postcode products (derived from Code-Point&reg; Open) are subject to the Open Government Licence.</td>
     <td><time datetime="2025-03-11">2025-03-11</time></td>
   </tr>
 </table>
@@ -78,12 +78,13 @@ datatable(df,
 <div id="tableFooterTitle">Postcodes in Trafford</div>
 
 <h2>Data</h2>
-<span id ="downloads">Download the complete dataset using the following link:</span>
+<span id ="downloads">Download the complete datasets and associated metadata using the following links:</span>
 
 |File name |Format |
 |---|---|
 |[trafford_postcodes.csv](trafford_postcodes.csv) |CSV |
 |[gm_postcodes.csv](gm_postcodes.csv) |CSV |
+|[postcode_files_metadata.csv](postcode_files_metadata.csv) |CSV |
 
 <h2>Pre-processing</h2>
 [The R script used to process the data](pre-processing.R) can be adapted to other areas. For information about R visit the <a href="https://cran.r-project.org" target="_blank">CRAN website</a>.
