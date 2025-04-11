@@ -61,14 +61,18 @@ group_wards_into_creative_clusters <- function(ward_geometry, resolution_name) {
             area_name %in% c("Timperley Central", "Timperley North") ~ "Timperley Central and Timperley North cluster",
             TRUE ~ paste0(area_name, " cluster"))) %>%
         group_by(area_name) %>% 
-        summarise() %>%
+        summarise(area = sum(area)) %>%
         
         # Calculate and store the coordinates of each cluster's centroid as a "lat" and "lon" property
-        mutate(lon = map_dbl(geometry, ~st_centroid(.x)[[1]]),
-               lat = map_dbl(geometry, ~st_centroid(.x)[[2]])) %>%
+        mutate(lon = round(map_dbl(geometry, ~st_centroid(.x)[[1]]), 5),
+               lat = round(map_dbl(geometry, ~st_centroid(.x)[[2]]),5),
+               area = round(area, 3),
+               area_units = "Square metres") %>%
         
         # Some "artifacts" (small polygons) may be present - probably loose ends when creating the ward boundaries. This removes them    
         st_remove_holes() %>%
+        
+        select(area_name, lon, lat, area, area_units) %>%
         
         # Create the new spatial file
         st_write(paste0("trafford_creative_clusters_", resolution_name, ".geojson"))
