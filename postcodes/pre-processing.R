@@ -1,7 +1,7 @@
-## ONS Postcode Directory (May 2025) ##
+## ONS Postcode Directory (November 2025) ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2025-for-the-uk/about
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-november-2025-for-the-uk/about
 # Licence: Open Government Licence 3.0
 
 # NOTES:
@@ -42,11 +42,11 @@ lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/servi
 
 
 # Now download the actual postcodes file ---------
-pcode_file_reference <- "ONSPD_MAY_2025_UK" # makes it easier to change this once here than throughout the code below
+pcode_file_reference <- "ONSPD_NOV_2025_UK" # makes it easier to change this once here than throughout the code below
 
-# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2025-for-the-uk/about
+# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-november-2025-for-the-uk/about
 tmp <- tempfile(fileext = ".zip")
-GET(url = "https://www.arcgis.com/sharing/rest/content/items/3be72478d8454b59bb86ba97b4ee325b/data",
+GET(url = "https://www.arcgis.com/sharing/rest/content/items/3635ca7f69df4733af27caf86473ffa1/data",
     write_disk(tmp))
 
 unzip(tmp, exdir = pcode_file_reference) # extract the contents of the zip
@@ -54,13 +54,13 @@ unzip(tmp, exdir = pcode_file_reference) # extract the contents of the zip
 # delete the downloaded zip
 unlink(tmp)
 
-postcodes_gm <- read_csv(paste0(pcode_file_reference, "/Data/", pcode_file_reference, ".csv")) %>% 
-  filter(oslaua %in% unique(lookup_ward_la_gm$la_code)) %>%
+gm_postcodes <- read_csv(paste0(pcode_file_reference, "/Data/", pcode_file_reference, ".csv")) %>% 
+  filter(lad25cd %in% unique(lookup_ward_la_gm$la_code)) %>%
   select(postcode = pcds,
-         ward_code = osward,
-         msoa_code = msoa21,
-         lsoa_code = lsoa21,
-         la_code = oslaua,
+         ward_code = wd25cd,
+         msoa_code = msoa21cd,
+         lsoa_code = lsoa21cd,
+         la_code = lad25cd,
          lon = long,
          lat = lat) %>% 
   left_join(lookup_ward_la_gm %>% select(ward_code,ward_name,la_name), by = "ward_code") %>% 
@@ -69,7 +69,7 @@ postcodes_gm <- read_csv(paste0(pcode_file_reference, "/Data/", pcode_file_refer
   select(postcode, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, la_code, la_name, lon, lat)
 
 # Filter for just postcodes in Trafford and add localities info
-trafford_postcodes <- postcodes_gm %>%
+trafford_postcodes <- gm_postcodes %>%
   filter(la_name=="Trafford") %>%
   mutate(locality = 
            case_when(
@@ -79,8 +79,13 @@ trafford_postcodes <- postcodes_gm %>%
              ward_name %in% c("Bucklow-St Martins", "Davyhulme", "Flixton", "Urmston") ~ "West")) %>%
   select(postcode, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, locality, la_code, la_name, lon, lat)
 
-# write data ---------
-write_csv(postcodes_gm, "gm_postcodes.csv")
+# Test for any NAs - resolve if any are found
+colSums(is.na(gm_postcodes))
+colSums(is.na(trafford_postcodes))
+
+
+# Write data ---------
+write_csv(gm_postcodes, "gm_postcodes.csv")
 write_csv(trafford_postcodes, "trafford_postcodes.csv")
 
 

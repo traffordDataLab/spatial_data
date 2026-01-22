@@ -17,7 +17,7 @@
 </tr>
 <tr>
 	<td>Publisher URL</td>
-	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2025-for-the-uk/about">https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2025-for-the-uk/about</a></td>
+	<td><a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-november-2025-for-the-uk/about">https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-november-2025-for-the-uk/about</a></td>
 </tr>
 <tr>
 	<td>Geography</td>
@@ -29,7 +29,7 @@
 </tr>
 <tr>
 	<td>Temporal coverage</td>
-	<td>Correct at 2025-06-02</td>
+	<td>Correct at 2025-12-03</td>
 </tr>
 <tr>
 	<td>Update frequency</td>
@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2025-for-the-uk/about">ONS Postcode Directory (May 2025)</a><br />Contains National Statistics data © Crown copyright and database right 2025. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
+	<td>ONS Geography Open Data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-november-2025-for-the-uk/about">ONS Postcode Directory (November 2025)</a><br />Contains National Statistics data © Crown copyright and database right 2025. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
 </tr>
 <tr>
 	<td>Format</td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td>Last updated</td>
-	<td>2025-06-10</td>
+	<td>2026-01-22</td>
 </tr>
 <tr>
 	<td>Notes</td>
