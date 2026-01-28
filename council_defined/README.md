@@ -30,4 +30,4 @@ The latest version of these geographies can be found within the 2023 folder. Pre
 
 ## Trafford Creative Clusters
 These have been created as part of the Cultural Transformation work and link to the "Culture, sport and heritage for everyone" priority defined in the Trafford Corporate Plan ["Our Trafford, Our Future 2024-27"](https://www.trafford.gov.uk/about-your-council/strategies-plans-and-policies/Corporate-Plan/Corporate-Plan-2024-27.pdf).
-The initial clusters were defined in 2024 and then revised in 2025.
+The initial clusters were defined in 2024 and then revised in 2025 and 2026.
