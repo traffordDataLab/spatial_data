@@ -41,7 +41,7 @@
 </tr>
 <tr>
 	<td>Attribution</td>
-	<td>ONS Geography Open Data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-november-2025-for-the-uk/about">ONS Postcode Directory (November 2025)</a><br />Contains National Statistics data © Crown copyright and database right 2025. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
+	<td>ONS Geography Open Data. Data Source: <a href="https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2026/about">ONS Postcode Directory (May 2026)</a><br />Contains OS data © Crown copyright and database right 2026. Contains Royal Mail data © Royal Mail copyright and database right 2026. Please read <a href="https://www.ons.gov.uk/methodology/geography/licences">ONS Licences page</a> for more details.</td>
 </tr>
 <tr>
 	<td>Format</td>
