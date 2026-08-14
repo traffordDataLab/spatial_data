@@ -1,13 +1,17 @@
 Name,Description
 postcode,Royal Mail postal code
+date_introduced,The year and month of the most recent occurrence of the postcode’s date of introduction in the format YYYY-MM
+date_terminated,If present - the year and month of the most recent occurrence of the postcode’s date of termination in the format YYYY-MM - otherwise NA
+is_active,TRUE if the postcode is currently active/live or FALSE if it has been terminated (in which case date_terminated will not be NA)
+la_code,Office for National Statistics (ONS) code of the Local Authority that the postcode lies within
+la_name,Name of the Local Authority that the postcode lies within
+locality,Trafford Council custom defined area (aligned to ward boundaries) that the postcode lies within (trafford_postcodes.csv only)
 ward_code,Office for National Statistics (ONS) code of the electoral ward that the postcode lies within
 ward_name,Name of the the electoral ward that the postcode lies within
 msoa_code,Office for National Statistics (ONS) code of the Middle-layer Super Output Area that the postcode lies within
 msoa_hcl_name,Local area recognisable name assigned by the House of Commons Library of the Middle-layer Super Output Area that the postcode lies within (https://houseofcommonslibrary.github.io/msoanames/)
 lsoa_code,Office for National Statistics (ONS) code of the Lower-layer Super Output Area that the postcode lies within
 lsoa_name,Schematic name of the Lower-layer Super Output Area that the postcode lies within
-locality,Trafford Council custom defined area (aligned to ward boundaries) that the postcode lies within (trafford_postcodes.csv only)
-la_code,Office for National Statistics (ONS) code of the Local Authority that the postcode lies within
-la_name,Name of the Local Authority that the postcode lies within
+oa_code,Office for National Statistics (ONS) code of the Output Area that the postcode lies within
 lon,Longitude coordinate of the centroid of the postcode in WGS84 projection
 lat,Latitude coordinate of the centroid of the postcode in WGS84 projection

@@ -12,7 +12,7 @@
 library(tidyverse) ; library(jsonlite) ; library(httr) ; library(sf)
 
 
-# Wards ---------
+# Ward lookup ---------
 # Obtain lookup for Greater Manchester containing all the wards and their associated LAs
 # Source: https://geoportal.statistics.gov.uk/datasets/ons::ward-to-local-authority-district-may-2024-lookup-in-the-uk/about
 lookup_ward_la_gm <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD24_LAD24_UK_LU/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
@@ -25,6 +25,7 @@ lookup_ward_la_gm <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcg
            la_name = LAD24NM)
 
 
+# MSOA names lookup ---------
 # Using the MSOA name file from: https://houseofcommonslibrary.github.io/msoanames/
 # There is a static URL available with the latest data, however for reproducibility we use the specific version file
 msoa <- read_csv("https://houseofcommonslibrary.github.io/msoanames/MSOA-Names-2.2.csv") %>% 
@@ -32,6 +33,7 @@ msoa <- read_csv("https://houseofcommonslibrary.github.io/msoanames/MSOA-Names-2
   select(msoa_code=msoa21cd,msoa_hcl_name=msoa21hclnm)
 
 
+# LSOA names lookup ---------
 # Statistical lookup OA -> LSOA -> MSOA -> LAD to get the LSOAs in each Greater Manchester LA
 # Source: https://geoportal.statistics.gov.uk/datasets/ons::output-area-2021-to-lsoa-to-msoa-to-lad-december-2021-exact-fit-lookup-in-ew-v3/about
 lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/OA_LSOA_MSOA_EW_DEC_2021_LU_v3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>%
@@ -41,7 +43,7 @@ lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/servi
     unique() # Need to remove duplicate LSOA entries (due to LSOAs containing multiple OAs but we've only extracted the LSOAs)
 
 
-# Now download the actual postcodes file ---------
+# Download the postcodes file ---------
 pcode_file_reference <- "ONSPD_MAY_2026_UK" # makes it easier to change this once here than throughout the code below
 
 # https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2026/about
@@ -54,19 +56,38 @@ unzip(tmp, exdir = pcode_file_reference) # extract the contents of the zip
 # delete the downloaded zip
 unlink(tmp)
 
+
+# Process the downloaded data ---------
+
+# **TO INCLUDE THE ICB CODE AND NAME, RUN THE FOLLOWING CODE AND THEN USE THIS IN ANOTHER left_join(icb, by = "icb_code") IN THE CODE BLOCK AFTER**
+# We don't need to do this as the ICB for all postcodes in GM is E54000057 NHS Greater Manchester Integrated Care Board.
+# This could also be used to add any other lookup data included in the download as required.
+# pull out the Integrated Care Board (ICB) lookup (NOTE: using a regular expression here as we can't guarantee the "as at ..." date will stay the same and we don't want to have to manually look!).
+icb_filename <- list.files(paste0(pcode_file_reference, "/Documents"), pattern="ICB Integrated Care Board names and codes UK as at [0-9]{2}_[0-9]{2}.csv")
+icb <- read_csv(paste0(pcode_file_reference, "/Documents/", icb_filename)) %>%
+    select(icb_code = ICB26CD,
+           icb_name = ICB26NM)
+
+# process the postcodes for the whole of GM and match to all the lookup files
 gm_postcodes <- read_csv(paste0(pcode_file_reference, "/Data/", pcode_file_reference, ".csv")) %>% 
   filter(lad25cd %in% unique(lookup_ward_la_gm$la_code)) %>%
   select(postcode = pcds,
+         date_introduced = dointr,
+         date_terminated = doterm,
          ward_code = wd25cd,
          msoa_code = msoa21cd,
          lsoa_code = lsoa21cd,
+         oa_code = oa21cd,
          la_code = lad25cd,
          lon = long,
          lat = lat) %>% 
+  mutate(date_introduced = str_replace(as.character(date_introduced), "([0-9]{4})([0-9]{2})", "\\1-\\2"), # Convert the introduction date from YYYYMM to YYYY-MM
+         date_terminated = str_replace(as.character(date_terminated), "([0-9]{4})([0-9]{2})", "\\1-\\2"), # Same as above for the terminated date
+         is_active = if_else(is.na(date_terminated), TRUE, FALSE)) %>% # Boolean to indicate if the postcode is currently active (i.e. doesn't have a termination date)
   left_join(lookup_ward_la_gm %>% select(ward_code,ward_name,la_name), by = "ward_code") %>% 
   left_join(msoa, by = "msoa_code") %>%
   left_join(lsoa, by = "lsoa_code") %>%
-  select(postcode, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, la_code, la_name, lon, lat)
+  select(postcode, date_introduced, date_terminated, is_active, la_code, la_name, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, oa_code, lon, lat)
 
 # Filter for just postcodes in Trafford and add localities info
 trafford_postcodes <- gm_postcodes %>%
@@ -77,7 +98,7 @@ trafford_postcodes <- gm_postcodes %>%
              ward_name %in% c("Gorse Hill & Cornbrook", "Longford", "Lostock & Barton", "Old Trafford", "Stretford & Humphrey Park") ~ "North",
              ward_name %in% c("Altrincham", "Bowdon", "Broadheath", "Hale", "Hale Barns & Timperley South", "Timperley Central", "Timperley North") ~ "South",
              ward_name %in% c("Bucklow-St Martins", "Davyhulme", "Flixton", "Urmston") ~ "West")) %>%
-  select(postcode, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, locality, la_code, la_name, lon, lat)
+  select(postcode, date_introduced, date_terminated, is_active, la_code, la_name, locality, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, oa_code, lon, lat)
 
 # Test for any NAs - resolve if any are found
 colSums(is.na(gm_postcodes))
