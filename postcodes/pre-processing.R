@@ -1,7 +1,7 @@
-## ONS Postcode Directory (May 2026) ##
+## ONS Postcode Directory (August 2026) ##
 
 # Source: ONS Open Geography Portal
-# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2026/about
+# Publisher URL: https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-august-2026/about
 # Licence: Open Government Licence 3.0
 
 # NOTES:
@@ -44,11 +44,11 @@ lsoa <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/servi
 
 
 # Download the postcodes file ---------
-pcode_file_reference <- "ONSPD_MAY_2026_UK" # makes it easier to change this once here than throughout the code below
+pcode_file_reference <- "ONSPD_AUG_2026_UK" # makes it easier to change this once here than throughout the code below
 
-# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-may-2026/about
+# https://geoportal.statistics.gov.uk/datasets/ons::ons-postcode-directory-august-2026/about
 tmp <- tempfile(fileext = ".zip")
-GET(url = "https://www.arcgis.com/sharing/rest/content/items/6fff67d204fd4f339591ed667a6e3642/data",
+GET(url = "https://www.arcgis.com/sharing/rest/content/items/9e5a92a3cfb14dc7ad43d6ea7a7b8c7f/data",
     write_disk(tmp))
 
 unzip(tmp, exdir = pcode_file_reference) # extract the contents of the zip
@@ -70,15 +70,15 @@ icb <- read_csv(paste0(pcode_file_reference, "/Documents/", icb_filename)) %>%
 
 # process the postcodes for the whole of GM and match to all the lookup files
 gm_postcodes <- read_csv(paste0(pcode_file_reference, "/Data/", pcode_file_reference, ".csv")) %>% 
-  filter(lad25cd %in% unique(lookup_ward_la_gm$la_code)) %>%
+  filter(lad26cd %in% unique(lookup_ward_la_gm$la_code)) %>%
   select(postcode = pcds,
          date_introduced = dointr,
          date_terminated = doterm,
-         ward_code = wd25cd,
+         ward_code = wd26cd,
          msoa_code = msoa21cd,
          lsoa_code = lsoa21cd,
          oa_code = oa21cd,
-         la_code = lad25cd,
+         la_code = lad26cd,
          lon = long,
          lat = lat) %>% 
   mutate(date_introduced = str_replace(as.character(date_introduced), "([0-9]{4})([0-9]{2})", "\\1-\\2"), # Convert the introduction date from YYYYMM to YYYY-MM
@@ -100,7 +100,7 @@ trafford_postcodes <- gm_postcodes %>%
              ward_name %in% c("Bucklow-St Martins", "Davyhulme", "Flixton", "Urmston") ~ "West")) %>%
   select(postcode, date_introduced, date_terminated, is_active, la_code, la_name, locality, ward_code, ward_name, msoa_code, msoa_hcl_name, lsoa_code, lsoa_name, oa_code, lon, lat)
 
-# Test for any NAs - resolve if any are found
+# Test for any NAs - resolve if any are found (except for date_terminated which is allowable to be NA)
 colSums(is.na(gm_postcodes))
 colSums(is.na(trafford_postcodes))
 
